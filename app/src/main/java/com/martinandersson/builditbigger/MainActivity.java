@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger;
+package com.martinandersson.builditbigger;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.Joker;
 import com.martinandersson.jokedisplayer.JokeDisplayActivity;
+import com.martinandersson.jokelibrary.Joker;
 
 public class MainActivity extends AppCompatActivity {
 

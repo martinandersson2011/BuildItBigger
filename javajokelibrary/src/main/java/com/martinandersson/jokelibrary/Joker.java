@@ -1,4 +1,4 @@
-package com.example;
+package com.martinandersson.jokelibrary;
 
 import java.util.Random;
 
