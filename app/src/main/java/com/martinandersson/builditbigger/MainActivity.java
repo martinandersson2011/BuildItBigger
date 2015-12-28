@@ -1,14 +1,12 @@
 package com.martinandersson.builditbigger;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.martinandersson.jokedisplayer.JokeDisplayActivity;
-import com.martinandersson.jokelibrary.Joker;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        String joke = new Joker().getJoke();
-
-        Intent intent = new Intent(this, JokeDisplayActivity.class);
-        intent.putExtra(JokeDisplayActivity.ARG_JOKE, joke);
-        startActivity(intent);
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
+        
+//        String joke = new Joker().getJoke();
+//        Intent intent = new Intent(this, JokeDisplayActivity.class);
+//        intent.putExtra(JokeDisplayActivity.ARG_JOKE, joke);
+//        startActivity(intent);
     }
 
 }
