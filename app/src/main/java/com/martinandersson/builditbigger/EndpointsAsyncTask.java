@@ -1,14 +1,12 @@
 package com.martinandersson.builditbigger;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.martinandersson.builditbigger.backend.myApi.MyApi;
-import com.martinandersson.jokedisplayer.JokeDisplayActivity;
 
 import java.io.IOException;
 
@@ -19,7 +17,15 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     public static final String TAG = EndpointsAsyncTask.class.getSimpleName();
 
     private static MyApi myApiService = null;
-    private Context context;
+    private EndpointsAsyncTaskCallback mEndpointsAsyncTaskCallback;
+
+    public interface EndpointsAsyncTaskCallback {
+        void onEndpointsAsyncTaskResult(String result);
+    }
+
+    public EndpointsAsyncTask(EndpointsAsyncTaskCallback endpointsAsyncTaskCallback) {
+        mEndpointsAsyncTaskCallback = endpointsAsyncTaskCallback;
+    }
 
     @Override
     protected String doInBackground(Context... params) {
@@ -42,8 +48,6 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
             myApiService = builder.build();
         }
 
-        context = params[0];
-
         try {
             return myApiService.getJoke().execute().getData();
         } catch (IOException e) {
@@ -54,8 +58,6 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         Log.d(TAG, "onPostExecute: " + result);
-        Intent intent = new Intent(context, JokeDisplayActivity.class);
-        intent.putExtra(JokeDisplayActivity.ARG_JOKE, result);
-        context.startActivity(intent);
+        mEndpointsAsyncTaskCallback.onEndpointsAsyncTaskResult(result);
     }
 }
