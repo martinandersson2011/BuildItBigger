@@ -18,6 +18,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        paid {
+            applicationId "com.martinandersson.builditbigger.paid"
+        }
+
+        free {
+            applicationId "com.martinandersson.builditbigger.free"
+        }
+    }
+
     dexOptions {
         javaMaxHeapSize "4g"
     }
