@@ -1,6 +1,5 @@
 package com.martinandersson.builditbigger;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -13,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by martin.andersson on 12/28/15.
  */
-public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     public static final String TAG = EndpointsAsyncTask.class.getSimpleName();
 
     private static MyApi myApiService = null;
@@ -28,7 +27,7 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     }
 
     @Override
-    protected String doInBackground(Context... params) {
+    protected String doInBackground(Void... params) {
 
         if (myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)

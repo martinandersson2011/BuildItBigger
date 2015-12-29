@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements EndpointsAsyncTas
 
     public void tellJoke(View view) {
         Log.d(TAG, "tellJoke");
-        new EndpointsAsyncTask(this).execute(this);
+        new EndpointsAsyncTask(this).execute();
     }
 
     @Override
